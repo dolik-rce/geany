@@ -7,6 +7,10 @@ AM_CFLAGS = \
 	$(GTK_CFLAGS) \
 	@LIBGEANY_CFLAGS@
 
+if MINGW
+AM_CFLAGS += -DUSE_SYSTEM_STRNLEN=1
+endif
+
 noinst_LTLIBRARIES = libctags.la
 
 parsers = \
@@ -55,7 +59,12 @@ parsers = \
 	parsers/geany_tex.c \
 	parsers/geany_txt2tags.c \
 	parsers/geany_verilog.c \
-	parsers/geany_vhdl.c
+	parsers/geany_vhdl.c \
+	parsers/peg/peg_common.h \
+	parsers/peg/kotlin.c \
+	parsers/peg/kotlin.h \
+	parsers/peg/kotlin_post.h \
+	parsers/peg/kotlin_pre.h
 
 # skip cmd.c and mini-geany.c which define main()
 libctags_la_SOURCES = \
