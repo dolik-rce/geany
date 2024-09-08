@@ -18,7 +18,7 @@
 #include "debug.h"
 #include "entry.h"
 #include "htable.h"
-#include "cpreprocessor.h"
+#include "x-cpreprocessor.h"
 #include "kind.h"
 #include "options.h"
 #include "read.h"
@@ -176,10 +176,6 @@ static roleDefinition CPREPROHeaderRoles [] = {
 	RoleTemplateLocal,
 };
 
-
-typedef enum {
-	CPREPRO_MACRO, CPREPRO_HEADER, CPREPRO_PARAM,
-} cPreProkind;
 
 static kindDefinition CPreProKinds [] = {
 	{ true,  'd', "macro",      "macro definitions",

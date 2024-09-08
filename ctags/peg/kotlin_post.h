@@ -31,6 +31,7 @@ static void makeKotlinTag (struct parserCtx *auxil, const char *name, long offse
     int k = PEEK_KIND(auxil);
     if (k == K_IGNORE) return;
     tagEntryInfo e;
+    char *stripped = NULL;
     if (*name != '`')
     {
         initTagEntry(&e, name, k);
@@ -39,18 +40,19 @@ static void makeKotlinTag (struct parserCtx *auxil, const char *name, long offse
         size_t len = strlen(name);
         Assert(len >= 2);
         len -= 2;
-        vString *stripped = vStringNewNInit(name + 1, len);
-        initTagEntry(&e, vStringValue(stripped), k);
-        vStringDelete(stripped);
+        stripped = eStrndup (name + 1, len);
+        initTagEntry(&e, stripped, k);
     }
-    e.lineNumber = getInputLineNumberForFileOffset (offset);
-    e.filePosition = getInputFilePositionForLine (e.lineNumber);
+    unsigned long lineNumber = getInputLineNumberForFileOffset (offset);
+    updateTagLine (&e, lineNumber, getInputFilePositionForLine (lineNumber));
     e.extensionFields.scopeIndex = BASE_SCOPE(auxil);
     int scope_index = makeTagEntry (&e);
     if (pushScope)
     {
         SET_SCOPE(auxil, scope_index);
     }
+    if (stripped)
+        eFree (stripped);
 }
 
 #ifdef DEBUG

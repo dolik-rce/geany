@@ -43,7 +43,8 @@
 	VarlinkParser, \
 	KotlinParser,  \
 	ThriftParser,  \
-	ElmParser
+	ElmParser,     \
+	TomlParser
 #else
 #define PEG_PARSER_LIST
 #endif
@@ -76,6 +77,7 @@
 	ClojureParser, \
 	CMakeParser, \
 	CParser, \
+	CargoParser, \
 	CppParser, \
 	CPreProParser, \
 	CssParser, \

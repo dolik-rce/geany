@@ -26,7 +26,7 @@
 
 #include "entry.h"
 #include "htable.h"
-#include "iniconf.h"
+#include "x-iniconf.h"
 #include "parse.h"
 #include "read.h"
 #include "subparser.h"
@@ -35,7 +35,7 @@
 static bool isIdentifier (int c)
 {
     /* allow whitespace within keys and sections */
-    return (bool)(isalnum (c) || isspace (c) ||  c == '_');
+    return (bool)(isalnum (c) || isspace (c) || c == '_' || c == '-' || c == '.');
 }
 
 static bool isValue (int c)

@@ -49,7 +49,7 @@ parsers = \
 	parsers/cxx/cxx_token_chain.h \
 	parsers/cxx/cxx_token.h \
 	parsers/cpreprocessor.c \
-	parsers/cpreprocessor.h \
+	parsers/x-cpreprocessor.h \
 	parsers/abaqus.c \
 	parsers/abc.c \
 	parsers/ada.c \
